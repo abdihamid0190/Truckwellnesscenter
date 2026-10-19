@@ -54,6 +54,8 @@ function RootNavigator() {
       <Stack.Protected guard={!hasProfile} redirectTo="/">
         <Stack.Screen name="welcome" />
       </Stack.Protected>
+      {/* Public, so the store listing can link straight to it. */}
+      <Stack.Screen name="privacy" />
     </Stack>
   );
 }
