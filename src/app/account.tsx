@@ -53,6 +53,7 @@ export default function AccountScreen() {
           <Card>
             <Text style={styles.body}>You’re not signed in. You only need an account to post.</Text>
             <Button label="Join or sign in" onPress={() => router.replace('/sign-in')} />
+            <Button label="Privacy policy" variant="outline" onPress={() => router.push('/privacy')} />
           </Card>
         ) : (
           <>
@@ -78,6 +79,7 @@ export default function AccountScreen() {
             </Card>
 
             <Button label="Community rules" variant="outline" onPress={() => router.push('/rules')} />
+            <Button label="Privacy policy" variant="outline" onPress={() => router.push('/privacy')} />
             <Button label="Sign out" variant="outline" onPress={() => signOut().then(back)} />
 
             {confirmDelete ? (
