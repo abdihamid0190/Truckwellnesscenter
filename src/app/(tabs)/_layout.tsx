@@ -11,14 +11,13 @@ export default function TabLayout() {
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: { backgroundColor: colors.tabBar, borderTopColor: colors.border },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Today',
           tabBarIcon: ({ color }) => (
-            <SymbolView name={{ ios: 'house', android: 'home', web: 'home' }} tintColor={color} size={26} />
+            <SymbolView name={{ ios: 'house', android: 'home', web: 'home' }} tintColor={color} size={24} />
           ),
         }}
       />
@@ -30,7 +29,7 @@ export default function TabLayout() {
             <SymbolView
               name={{ ios: 'dumbbell', android: 'fitness_center', web: 'fitness_center' }}
               tintColor={color}
-              size={26}
+              size={24}
             />
           ),
         }}
@@ -43,7 +42,7 @@ export default function TabLayout() {
             <SymbolView
               name={{ ios: 'mappin.and.ellipse', android: 'location_on', web: 'location_on' }}
               tintColor={color}
-              size={26}
+              size={24}
             />
           ),
         }}
@@ -56,7 +55,7 @@ export default function TabLayout() {
             <SymbolView
               name={{ ios: 'chart.bar', android: 'bar_chart', web: 'bar_chart' }}
               tintColor={color}
-              size={26}
+              size={24}
             />
           ),
         }}
