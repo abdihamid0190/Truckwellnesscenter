@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import type { Gear } from '@/data/workouts';
+import type { ReminderSettings } from '@/lib/reminders';
 
 export type RunType = 'Over the road' | 'Regional' | 'Local';
 export type Mood = 'Rough' | 'Stiff' | 'Good';
@@ -22,6 +23,7 @@ export type DayLog = {
 type Saved = {
   profile: Profile | null;
   days: Record<string, DayLog>;
+  reminders?: ReminderSettings;
 };
 
 type Store = Saved & {
@@ -32,6 +34,7 @@ type Store = Saved & {
   addWater: (cups: number) => void;
   setSleep: (minutes: number) => void;
   logWorkout: (id: string) => void;
+  setReminders: (reminders: ReminderSettings) => void;
 };
 
 const STORAGE_KEY = 'wellness-state-v1';
@@ -92,6 +95,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         updateToday((day) => ({ ...day, water: Math.min(WATER_GOAL * 2, Math.max(0, day.water + cups)) })),
       setSleep: (minutes) => updateToday((day) => ({ ...day, sleepMinutes: Math.max(0, minutes) })),
       logWorkout: (id) => updateToday((day) => ({ ...day, workouts: [...day.workouts, { id, at: Date.now() }] })),
+      setReminders: (reminders) => update((current) => ({ ...current, reminders })),
     }),
     [saved, loaded, update, updateToday],
   );

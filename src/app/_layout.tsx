@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { colors } from '@/constants/theme';
+import { AuthProvider } from '@/state/auth';
 import { StoreProvider, useStore } from '@/state/store';
 
 export {
@@ -20,9 +21,11 @@ const theme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: colors.
 export default function RootLayout() {
   return (
     <StoreProvider>
-      <ThemeProvider value={theme}>
-        <RootNavigator />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider value={theme}>
+          <RootNavigator />
+        </ThemeProvider>
+      </AuthProvider>
     </StoreProvider>
   );
 }
@@ -44,6 +47,9 @@ function RootNavigator() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="workout/[id]" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
         <Stack.Screen name="gym/[id]" />
+        <Stack.Screen name="sign-in" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="account" />
+        <Stack.Screen name="rules" />
       </Stack.Protected>
       <Stack.Protected guard={!hasProfile} redirectTo="/">
         <Stack.Screen name="welcome" />
