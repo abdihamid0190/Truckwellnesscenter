@@ -43,6 +43,7 @@ function RootNavigator() {
       <Stack.Protected guard={hasProfile} redirectTo="/welcome">
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="workout/[id]" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
+        <Stack.Screen name="gym/[id]" />
       </Stack.Protected>
       <Stack.Protected guard={!hasProfile} redirectTo="/">
         <Stack.Screen name="welcome" />

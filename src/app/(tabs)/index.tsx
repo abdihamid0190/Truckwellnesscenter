@@ -121,7 +121,7 @@ export default function TodayScreen() {
           style={({ pressed }) => [styles.gymCard, pressed && styles.pressed]}>
           <View style={styles.flex}>
             <Text style={styles.gymTitle}>Find a gym near you</Text>
-            <Text style={styles.gymMeta}>Day passes, showers and rig parking</Text>
+            <Text style={styles.gymMeta}>Hours, phone and directions</Text>
           </View>
           <Text style={styles.chevron}>›</Text>
         </Pressable>
