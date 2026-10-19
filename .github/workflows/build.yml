@@ -20,7 +20,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
     steps:
+      - name: Check the Expo key is set
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "::error title=Missing Expo key::Add a repository secret named EXPO_TOKEN under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
