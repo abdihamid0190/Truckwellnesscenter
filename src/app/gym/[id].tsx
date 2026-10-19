@@ -3,9 +3,11 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { ParkingCard, TipsCard } from '@/components/driver-posts';
 import { Button, Card, SectionLabel } from '@/components/ui';
 import { colors } from '@/constants/theme';
 import { getGym, Gym } from '@/data/gyms';
+import { supabaseConfigured } from '@/lib/supabase';
 
 // Hands off to the phone's own map app. Drivers should check the route is
 // safe for their truck there; this app has no truck routing.
@@ -32,7 +34,7 @@ export default function GymDetailScreen() {
         </View>
       ) : (
         <>
-          <ScrollView contentContainerStyle={styles.content}>
+          <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
             <View style={styles.header}>
               <Text style={styles.title}>{gym.name}</Text>
               <Text style={styles.body}>
@@ -57,12 +59,19 @@ export default function GymDetailScreen() {
               </Card>
             )}
 
-            <Card>
-              <SectionLabel>Truck parking</SectionLabel>
-              <Text style={styles.body}>
-                Driver reports on rig parking are coming soon. Until then, call ahead or check the lot on the map.
-              </Text>
-            </Card>
+            {supabaseConfigured ? (
+              <>
+                <ParkingCard gymId={gym.id} />
+                <TipsCard gymId={gym.id} />
+              </>
+            ) : (
+              <Card>
+                <SectionLabel>Truck parking</SectionLabel>
+                <Text style={styles.body}>
+                  Driver reports on rig parking are coming soon. Until then, call ahead or check the lot on the map.
+                </Text>
+              </Card>
+            )}
           </ScrollView>
 
           <View style={styles.actions}>

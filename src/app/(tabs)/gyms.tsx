@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Chip } from '@/components/ui';
 import { colors } from '@/constants/theme';
 import { findGymsNear, Gym, SEARCH_RADIUS_MILES } from '@/data/gyms';
+import { useAuth } from '@/state/auth';
 
 type Status =
   | { kind: 'idle' }
@@ -18,6 +19,7 @@ export default function GymsScreen() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<Status>({ kind: 'idle' });
   const [only24h, setOnly24h] = useState(false);
+  const { configured, userId, handle } = useAuth();
 
   const search = async (place: string, getCoords: () => Promise<{ latitude: number; longitude: number } | null>) => {
     setStatus({ kind: 'loading' });
@@ -66,7 +68,19 @@ export default function GymsScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={styles.title}>Gyms</Text>
+        <View style={styles.titleRow}>
+          <Text style={styles.title}>Gyms</Text>
+          {configured && (
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => router.push(userId ? '/account' : '/sign-in')}
+              style={({ pressed }) => [styles.account, pressed && styles.pressed]}>
+              <Text style={styles.accountText} numberOfLines={1}>
+                {userId ? (handle ?? 'Account') : 'Sign in'}
+              </Text>
+            </Pressable>
+          )}
+        </View>
 
         <View style={styles.searchRow}>
           <TextInput
@@ -126,7 +140,10 @@ export default function GymsScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
   content: { padding: 20, gap: 14, flexGrow: 1 },
-  title: { color: colors.text, fontSize: 32, fontWeight: '800', marginTop: 8 },
+  titleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginTop: 8 },
+  title: { color: colors.text, fontSize: 32, fontWeight: '800' },
+  account: { minHeight: 44, maxWidth: 180, justifyContent: 'center', paddingHorizontal: 4 },
+  accountText: { color: colors.accent, fontSize: 17, fontWeight: '600' },
   searchRow: { flexDirection: 'row', gap: 8 },
   input: {
     flex: 1,

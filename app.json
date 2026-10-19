@@ -39,7 +39,8 @@
         {
           "locationWhenInUsePermission": "Your location is used to find gyms near where you are parked. It is only used while the app is open."
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
