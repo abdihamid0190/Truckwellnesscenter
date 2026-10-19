@@ -6,7 +6,7 @@ import { colors } from '@/constants/theme';
 
 // The App Store and Google Play both ask for a privacy policy link. On the
 // web build this screen is also that public page, at /privacy.
-const SUPPORT_EMAIL = 'support@example.com';
+const SUPPORT_EMAIL = 'support@truckerwellnessapp.com';
 const UPDATED = 'October 19, 2026';
 
 const sections: [string, string][] = [
