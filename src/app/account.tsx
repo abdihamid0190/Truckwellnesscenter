@@ -52,7 +52,7 @@ export default function AccountScreen() {
         {!userId ? (
           <Card>
             <Text style={styles.body}>You’re not signed in. You only need an account to post.</Text>
-            <Button label="Sign in" onPress={() => router.replace('/sign-in')} />
+            <Button label="Join or sign in" onPress={() => router.replace('/sign-in')} />
           </Card>
         ) : (
           <>

@@ -93,7 +93,7 @@ export function ParkingCard({ gymId }: { gymId: string }) {
         <Chip label="Yes" selected={mine?.canPark === true} onPress={() => vote(true)} style={styles.flex} />
         <Chip label="No" selected={mine?.canPark === false} onPress={() => vote(false)} style={styles.flex} />
       </View>
-      {!driverId && <Text style={styles.muted}>Sign in to vote. It takes a minute.</Text>}
+      {!driverId && <Text style={styles.muted}>Join or sign in to vote. It takes a minute.</Text>}
       {error && <Text style={styles.error}>{error}</Text>}
     </Card>
   );
@@ -179,7 +179,7 @@ export function TipsCard({ gymId }: { gymId: string }) {
                   />
                 </View>
               ) : !driverId ? (
-                <Button label="Sign in to report or block" variant="outline" onPress={goSignIn} />
+                <Button label="Join or sign in to report or block" variant="outline" onPress={goSignIn} />
               ) : (
                 <View style={styles.row}>
                   <Button
@@ -217,7 +217,7 @@ export function TipsCard({ gymId }: { gymId: string }) {
           <Button label="Post tip" onPress={post} disabled={busy || draft.trim().length < 2} />
         </View>
       ) : (
-        <Button label="Sign in to add a tip" variant="outline" onPress={goSignIn} />
+        <Button label="Join or sign in to add a tip" variant="outline" onPress={goSignIn} />
       )}
       {notice && <Text style={styles.notice}>{notice}</Text>}
     </Card>

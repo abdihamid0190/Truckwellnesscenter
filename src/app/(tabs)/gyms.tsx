@@ -76,7 +76,7 @@ export default function GymsScreen() {
               onPress={() => router.push(userId ? '/account' : '/sign-in')}
               style={({ pressed }) => [styles.account, pressed && styles.pressed]}>
               <Text style={styles.accountText} numberOfLines={1}>
-                {userId ? (handle ?? 'Account') : 'Sign in'}
+                {userId ? (handle ?? 'Account') : 'Join or sign in'}
               </Text>
             </Pressable>
           )}

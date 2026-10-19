@@ -74,9 +74,9 @@ export default function SignInScreen() {
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           {step === 'email' && (
             <>
-              <Text style={styles.title}>Sign in to post</Text>
+              <Text style={styles.title}>Join or sign in</Text>
               <Text style={styles.body}>
-                You only need an account to vote on parking and leave tips. We’ll email you a code. No password.
+                New or returning, it’s the same: we’ll email you a code, no password. The first time, this makes your account. You only need one to vote on parking and leave tips.
               </Text>
               <TextInput
                 value={email}
@@ -111,7 +111,7 @@ export default function SignInScreen() {
                 accessibilityLabel="Code"
                 style={[styles.input, styles.codeInput]}
               />
-              <Button label="Sign in" onPress={submitCode} disabled={busy || code.length < 6} />
+              <Button label="Continue" onPress={submitCode} disabled={busy || code.length < 6} />
               <Button
                 label="Use a different email"
                 variant="outline"
