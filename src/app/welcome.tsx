@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, Chip, SectionLabel } from '@/components/ui';
@@ -28,6 +28,11 @@ export default function WelcomeScreen() {
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.intro}>
+          <Image
+            source={require('../../assets/images/logo-patch.png')}
+            style={styles.logo}
+            accessibilityLabel="Trucker Wellness logo"
+          />
           <Text style={styles.title}>Stay healthy on the road.</Text>
           <Text style={styles.subtitle}>Three quick questions so your plan fits your cab and your schedule.</Text>
         </View>
@@ -77,6 +82,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
   content: { padding: 24, gap: 28, flexGrow: 1 },
   intro: { gap: 10, marginTop: 16 },
+  logo: { width: 132, height: 132, alignSelf: 'center', marginBottom: 12 },
   title: { color: colors.text, fontSize: 40, lineHeight: 44, fontWeight: '800' },
   subtitle: { color: colors.textSecondary, fontSize: 17, lineHeight: 24 },
   section: { gap: 12 },
